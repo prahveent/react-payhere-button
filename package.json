@@ -8,6 +8,22 @@
     "type": "git",
     "url": "https://github.com/prahveent/react-payhere-button"
   },
+  "keywords": [
+    "react-payhere-button",
+    "react",
+    "component",
+    "payhere",
+    "payhere smart buttons",
+    "payhere smart payment buttons",
+    "checkout",
+    "payhere-checkout",
+    "react-payhere",
+    "react-component",
+    "payhere buttons",
+    "PayHere JavaScript SDK",
+    "Prahveen Thiruchelvam",
+    "prahveent"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",

@@ -48,7 +48,7 @@ class PayHereButton extends Component<PayHereButtonProps, PyaHereButtonState> {
     sandbox: false,
     buttonDescription: 'Pay Here',
     style: {
-      backgroundColor: '#008CBA',
+      backgroundColor: '#1a1aff',
       border: 'none',
       color: 'white',
       textAlign: 'center',
@@ -57,9 +57,10 @@ class PayHereButton extends Component<PayHereButtonProps, PyaHereButtonState> {
       fontSize: '16px',
       margin: '32px 16px',
       cursor: 'pointer',
-      padding: '34px'
+      padding: '10px 34px',
+      borderRadius: '4px'
     },
-    currency: 'LRK',
+    currency: 'LKR',
   }
 
   constructor(props: PayHereButtonProps) {
@@ -130,6 +131,8 @@ class PayHereButton extends Component<PayHereButtonProps, PyaHereButtonState> {
     const { style, buttonDescription } = this.props;
     const { isSdkReady } = this.state;
 
+    console.log(this.props)
+
     if (!isSdkReady && (typeof window === "undefined" || window.payhere === undefined)) {
       return null;
     }
@@ -139,23 +142,14 @@ class PayHereButton extends Component<PayHereButtonProps, PyaHereButtonState> {
         style={style}
         onClick={this.onClick} > {buttonDescription} </button >
     );
-
-
   }
 
   private addPayHereSdk() {
-    const { options, onButtonReady } = this.props;
-    const options2 = options == undefined ? {} : options;
-    const queryParams: string[] = [];
-    const getKeyValue = (key: string) => (obj: Record<string, any>) => obj[key];
-    Object.keys(options2).forEach((k: string) => {
-      const name = k.split(/(?=[A-Z])/).join("-").toLowerCase();
-      queryParams.push(`${name}=${getKeyValue(k)(options2)}`);
-    });
+    const { onButtonReady } = this.props;
 
     const script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = `https://www.payhere.lk/lib/payhere.js?${queryParams.join("&")}`;
+    script.src = `https://www.payhere.lk/lib/payhere.js`;
     script.async = true;
     script.onload = () => {
       this.setState({ isSdkReady: true });
